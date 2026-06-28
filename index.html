@@ -2,68 +2,118 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aqualonixx</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <header class="nav">
+    <div class="brand">
+      <span class="brand-mark">💦</span>
+      <span class="brand-name">AQUALONIXX</span>
+    </div>
 
-<!-- NAV -->
-<header class="nav">
-  <h1>AQUALONIXX</h1>
+    <div class="nav-actions">
+      <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('es')" type="button">ES</button>
+        <button class="lang-btn" onclick="setLang('en')" type="button">EN</button>
+      </div>
 
-  <div class="lang">
-    <button onclick="setLang('es')">ES</button>
-    <button onclick="setLang('en')">EN</button>
-  </div>
+      <button class="cart-btn" onclick="openCart()" type="button" aria-label="Abrir carrito">
+        🛒 <span id="cartCount" class="cart-count">0</span>
+      </button>
+    </div>
+  </header>
 
-  <div class="cart" onclick="openCart()">
-    🛒 <span id="cartCount">0</span>
-  </div>
-</header>
+  <section class="hero">
+    <div class="hero-content">
+      <p class="eyebrow" data-es="NUEVA TEMPORADA 2026" data-en="NEW SEASON 2026">NUEVA TEMPORADA 2026</p>
+      <h1 data-es="Las pistolas de agua del futuro" data-en="The water blasters of the future">
+        Las pistolas de agua del futuro
+      </h1>
+      <p class="hero-text" data-es="Potencia, estilo y diversión extrema para el verano." data-en="Power, style, and extreme summer fun.">
+        Potencia, estilo y diversión extrema para el verano.
+      </p>
 
-<!-- HERO -->
-<section class="hero">
-  <h2 data-es="Las pistolas de agua del futuro"
-      data-en="The water blasters of the future">
-    Las pistolas de agua del futuro
-  </h2>
+      <div class="hero-actions">
+        <a href="#shop" class="btn btn-primary" data-es="Ver productos" data-en="View products">Ver productos</a>
+        <button class="btn btn-secondary" onclick="openCart()" type="button" data-es="Ver carrito" data-en="View cart">
+          Ver carrito
+        </button>
+      </div>
+    </div>
 
-  <p data-es="Potencia. Estilo. Diversión extrema."
-     data-en="Power. Style. Extreme fun.">
-    Potencia. Estilo. Diversión extrema.
-  </p>
+    <div class="hero-art" aria-hidden="true">
+      <div class="splash splash-1"></div>
+      <div class="splash splash-2"></div>
+      <div class="gun-card">
+        <div class="gun-top"></div>
+        <div class="gun-body"></div>
+        <div class="gun-nozzle"></div>
+      </div>
+    </div>
+  </section>
 
-  <a href="#shop" class="btn">Shop Now</a>
+  <section class="stats">
+    <div class="stat">
+      <strong>8-10m</strong>
+      <span data-es="alcance" data-en="range">alcance</span>
+    </div>
+    <div class="stat">
+      <strong>USB</strong>
+      <span data-es="recarga" data-en="recharge">recarga</span>
+    </div>
+    <div class="stat">
+      <strong>Auto</strong>
+      <span data-es="disparo continuo" data-en="continuous fire">disparo continuo</span>
+    </div>
+  </section>
 
-  <div class="water"></div>
-</section>
+  <main id="shop" class="shop">
+    <div class="section-head">
+      <p class="eyebrow" data-es="MODELOS DESTACADOS" data-en="FEATURED MODELS">MODELOS DESTACADOS</p>
+      <h2 data-es="Elegí tu blaster" data-en="Choose your blaster">Elegí tu blaster</h2>
+    </div>
 
-<!-- SHOP -->
-<section id="shop" class="shop">
+    <div id="products" class="products"></div>
+  </main>
 
-  <div class="card">
-    <h3>Aqualonixx X1</h3>
-    <p>USB Recharge • 8m Range</p>
-    <button onclick="addToCart('X1')">Comprar</button>
-  </div>
+  <section class="about">
+    <div class="about-card">
+      <h3 data-es="Diseño premium" data-en="Premium design">Diseño premium</h3>
+      <p data-es="Pantalla moderna, animaciones suaves y una experiencia pensada para vender bien." data-en="Modern layout, smooth animation, and a conversion-focused experience.">
+        Pantalla moderna, animaciones suaves y una experiencia pensada para vender bien.
+      </p>
+    </div>
+    <div class="about-card">
+      <h3 data-es="Compra fácil" data-en="Easy purchase">Compra fácil</h3>
+      <p data-es="Carrito lateral, total automático y cierre tocando afuera para que todo se sienta real." data-en="Side cart, auto total, and click-outside close for a realistic feel.">
+        Carrito lateral, total automático y cierre tocando afuera para que todo se sienta real.
+      </p>
+    </div>
+  </section>
 
-  <div class="card">
-    <h3>Aqualonixx X2</h3>
-    <p>Pro Power • 10m Range</p>
-    <button onclick="addToCart('X2')">Comprar</button>
-  </div>
+  <div id="backdrop" class="backdrop" onclick="closeCart()" aria-hidden="true"></div>
 
-</section>
+  <aside id="cartPanel" class="cart-panel" aria-label="Carrito">
+    <div class="cart-header">
+      <h2 data-es="Carrito" data-en="Cart">Carrito</h2>
+      <button class="close-btn" onclick="closeCart()" type="button" aria-label="Cerrar carrito">✕</button>
+    </div>
 
-<!-- CART -->
-<div id="cart" class="cartPanel">
-  <h2>Carrito</h2>
-  <ul id="cartList"></ul>
-  <button onclick="closeCart()">Cerrar</button>
-</div>
+    <div id="cartItems" class="cart-items"></div>
 
-<script src="script.js"></script>
+    <div class="cart-footer">
+      <div class="total-row">
+        <span data-es="Total" data-en="Total">Total</span>
+        <strong id="cartTotal">$0</strong>
+      </div>
+      <button class="checkout-btn" type="button" data-es="Finalizar compra" data-en="Checkout">
+        Finalizar compra
+      </button>
+    </div>
+  </aside>
+
+  <script src="script.js"></script>
 </body>
 </html>
